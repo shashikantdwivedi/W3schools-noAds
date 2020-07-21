@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "924186228497",
+    "firebase_url": "https://w3school-noads.firebaseio.com",
+    "project_id": "w3school-noads",
+    "storage_bucket": "w3school-noads.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924186228497:android:964bd4cfc6746d3a0cbeb0",
+        "android_client_info": {
+          "package_name": "com.shashikantdwivedi.w3school"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "924186228497-t8ccjknc5o1lavrama0ls799cgn9vtf6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvlPklYiywzkbTchxDZ4pu_OEsx5svsKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "924186228497-t8ccjknc5o1lavrama0ls799cgn9vtf6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
