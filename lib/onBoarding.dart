@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:w3school/blackBox.dart';
 import 'onBoarding/darkMode.dart';
 import 'db.dart';
 import 'models/settingsModel.dart';
@@ -13,13 +15,8 @@ class OnBoarding extends StatefulWidget {
 
 class _OnBoarding extends State<OnBoarding> {
   List<Settings> _settings = [];
-  bool firstTime = false;
 
-  void initState() {
-    checkFirstUse();
-  }
-
-  void checkFirstUse() async {
+  void checkFirstUse(blackBox) async {
     print('Checking First Use');
     List<Map<String, dynamic>> _results =
         await DB.query(Settings.table, where: 'configuration=\'FirstTime\'');
@@ -31,24 +28,18 @@ class _OnBoarding extends State<OnBoarding> {
         int updt = await DB.update(Settings.table, s);
       } else {
         print('Not First Use');
-        setState(() {
-          firstTime = true;
-        });
+        blackBox.firstTime = true;
       }
-    });
-    List<Map<String, dynamic>> _newResults = await DB.query(Settings.table);
-    _settings = _newResults.map((item) => Settings.fromMap(item)).toList();
-    _settings.forEach((Settings s) {
-      print(s.configuration);
-      print(s.value);
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    var blackBox = Provider.of<BlackBox>(context);
+    checkFirstUse(blackBox);
     return SafeArea(
         child: Scaffold(
-      body: firstTime
+      body: blackBox.firstTime
           ? PageView(
               scrollDirection: Axis.horizontal,
               children: [NoAds(), Bookmarks(), DarkMode()],
