@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:w3school/onBoarding.dart';
 import 'db.dart';
+import 'home.dart';
 import 'models/settingsModel.dart';
 import 'models/bookmarksModel.dart';
 import 'blackBox.dart';
@@ -18,7 +20,7 @@ class MyApp extends StatefulWidget {
 
 class _MyApp extends State<MyApp> {
   List<Settings> _settings = [];
-  bool firstTime = true;
+  bool firstTime = false;
 
   @override
   void initState() {
@@ -32,13 +34,14 @@ class _MyApp extends State<MyApp> {
     _settings = _results.map((item) => Settings.fromMap(item)).toList();
     _settings.forEach((Settings s) async {
       if (s.value == '1') {
+        print('First Time Used');
         s.value = '0';
         int updt = await DB.update(Settings.table, s);
+      } else {
+        print('Not First Use');
         setState(() {
           firstTime = true;
         });
-      } else {
-        print('Not First Use');
       }
     });
     List<Map<String, dynamic>> _newResults = await DB.query(Settings.table);
@@ -53,7 +56,17 @@ class _MyApp extends State<MyApp> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
         create: (context) => BlackBox(),
-        child:
-            MaterialApp(debugShowCheckedModeBanner: false, home: Scaffold()));
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+              primaryColor: Color(0xFF4CAF50 ),
+              fontFamily: 'Gilroy Medium',
+          ),
+          initialRoute: '/',
+          routes: {
+            '/': (context) => OnBoarding(),
+            '/home': (context) => Home()
+          },
+        ));
   }
 }
