@@ -49,7 +49,9 @@ class DarkMode extends StatelessWidget {
                   height: 50,
                   margin: EdgeInsets.symmetric(horizontal: 40),
                   child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/startScreen');
+                    },
                     child: Text('Finish', style: TextStyle(
                       fontFamily: 'Gilroy Bold',
                       color: Colors.white,

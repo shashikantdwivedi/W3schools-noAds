@@ -5,8 +5,8 @@ import 'onBoarding/darkMode.dart';
 import 'db.dart';
 import 'models/settingsModel.dart';
 import 'onBoarding/bookmarks.dart';
-import 'onBoarding/loading.dart';
 import 'onBoarding/noAds.dart';
+import 'startScreen.dart';
 
 class OnBoarding extends StatefulWidget {
   @override
@@ -28,7 +28,7 @@ class _OnBoarding extends State<OnBoarding> {
         int updt = await DB.update(Settings.table, s);
       } else {
         print('Not First Use');
-        blackBox.setFirstTime = true;
+        blackBox.setFirstTime = false;
       }
     });
   }
@@ -46,7 +46,7 @@ class _OnBoarding extends State<OnBoarding> {
               scrollDirection: Axis.horizontal,
               children: [NoAds(), Bookmarks(), DarkMode()],
             )
-          : Loading(),
+          : StartScreen(),
     ));
   }
 }

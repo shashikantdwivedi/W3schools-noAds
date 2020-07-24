@@ -8,6 +8,7 @@ import 'models/settingsModel.dart';
 import 'models/bookmarksModel.dart';
 import 'blackBox.dart';
 import 'package:device_preview/device_preview.dart';
+import 'startScreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,7 +45,8 @@ class _MyApp extends State<MyApp> {
           initialRoute: '/',
           routes: {
             '/': (context) => OnBoarding(),
-            '/home': (context) => Home()
+            '/home': (context) => Home(),
+            '/startScreen': (context) => StartScreen()
           },
         ));
   }

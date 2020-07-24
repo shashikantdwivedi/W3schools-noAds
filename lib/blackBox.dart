@@ -1,8 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'models/settingsModel.dart';
+import 'models/bookmarksModel.dart';
 
 class BlackBox extends ChangeNotifier {
-  Settings _settings;
+  List<Settings> _settings;
+  List<Bookmarks> _bookmarks;
   bool firstTime = false;
   bool firstTimeChecked = false;
 
@@ -18,7 +20,17 @@ class BlackBox extends ChangeNotifier {
     return _settings;
   }
 
-  set setSettings(Settings s) {
+  set setSettings(List<Settings> s) {
     _settings = s;
+    notifyListeners();
+  }
+
+  get getBookmarks {
+    return _bookmarks;
+  }
+
+  set setBookmarks(List<Bookmarks> b) {
+    _bookmarks = b;
+    notifyListeners();
   }
 }
