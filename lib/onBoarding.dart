@@ -28,7 +28,7 @@ class _OnBoarding extends State<OnBoarding> {
         int updt = await DB.update(Settings.table, s);
       } else {
         print('Not First Use');
-        blackBox.firstTime = true;
+        blackBox.setFirstTime = true;
       }
     });
   }
@@ -36,7 +36,9 @@ class _OnBoarding extends State<OnBoarding> {
   @override
   Widget build(BuildContext context) {
     var blackBox = Provider.of<BlackBox>(context);
-    checkFirstUse(blackBox);
+    if (!blackBox.firstTimeChecked) {
+      checkFirstUse(blackBox);
+    }
     return SafeArea(
         child: Scaffold(
       body: blackBox.firstTime

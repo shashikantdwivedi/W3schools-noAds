@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:w3school/onBoarding.dart';
@@ -6,12 +7,18 @@ import 'home.dart';
 import 'models/settingsModel.dart';
 import 'models/bookmarksModel.dart';
 import 'blackBox.dart';
+import 'package:device_preview/device_preview.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await DB.init();
-  runApp(MyApp());
+  runApp(
+    DevicePreview(
+      enabled: kReleaseMode,
+      builder: (context) => MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -27,6 +34,8 @@ class _MyApp extends State<MyApp> {
     return ChangeNotifierProvider(
         create: (context) => BlackBox(),
         child: MaterialApp(
+          locale: DevicePreview.of(context).locale, // <--- Add the locale
+          builder: DevicePreview.appBuilder,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primaryColor: Color(0xFF4CAF50),
