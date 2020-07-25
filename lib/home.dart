@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'blackBox.dart';
+import 'components/bottomBar.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -10,8 +13,11 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    var blackBoxProvider = Provider.of<BlackBox>(context);
     return SafeArea(
-      child: Scaffold(body: Container(child: Text('Home Screen'))),
+      child: Scaffold(
+          bottomNavigationBar: bottomBar(blackBoxProvider, context),
+          body: Container(child: Text('Home Screen'))),
     );
   }
 }

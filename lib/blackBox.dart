@@ -7,14 +7,13 @@ class BlackBox extends ChangeNotifier {
   List<Bookmarks> _bookmarks;
   bool firstTime = false;
   bool firstTimeChecked = false;
+  int _bottomBarIndex = 0;
 
   set setFirstTime(bool val) {
     firstTimeChecked = true;
     firstTime = val;
     notifyListeners();
   }
-
-
 
   get getSettings {
     return _settings;
@@ -31,6 +30,15 @@ class BlackBox extends ChangeNotifier {
 
   set setBookmarks(List<Bookmarks> b) {
     _bookmarks = b;
+    notifyListeners();
+  }
+
+  get getBottomBarIndex {
+    return _bottomBarIndex;
+  }
+
+  set setBottomBarIndex(index) {
+    _bottomBarIndex = index;
     notifyListeners();
   }
 }

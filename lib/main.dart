@@ -9,6 +9,7 @@ import 'models/bookmarksModel.dart';
 import 'blackBox.dart';
 import 'package:device_preview/device_preview.dart';
 import 'startScreen.dart';
+import 'settings.dart' as SettingsPage;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,7 +47,8 @@ class _MyApp extends State<MyApp> {
           routes: {
             '/': (context) => OnBoarding(),
             '/home': (context) => Home(),
-            '/startScreen': (context) => StartScreen()
+            '/startScreen': (context) => StartScreen(),
+            '/settings': (context) => SettingsPage.Settings()
           },
         ));
   }

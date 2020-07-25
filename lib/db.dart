@@ -13,7 +13,7 @@ abstract class DB {
     }
 
     try {
-      String _path = await getDatabasesPath() + 'db8';
+      String _path = await getDatabasesPath() + 'db9';
       _db = await openDatabase(_path, version: _version, onCreate: onCreate);
     } catch (ex) {
       print(ex);
