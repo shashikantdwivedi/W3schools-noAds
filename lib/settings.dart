@@ -29,7 +29,7 @@ class _SettingsState extends State<Settings> {
   }
 
   void donateOption() async {
-    const url = 'https://paypal.me/TheSkd1999';
+    const url = 'https://ko-fi.com/w3schoolsnoads';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -83,7 +83,9 @@ class _SettingsState extends State<Settings> {
                   ),
                 ),
                 GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, '/reportProblem');
+                    },
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 15),
                       child: ListTile(

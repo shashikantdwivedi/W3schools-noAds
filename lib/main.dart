@@ -10,6 +10,7 @@ import 'blackBox.dart';
 import 'package:device_preview/device_preview.dart';
 import 'startScreen.dart';
 import 'settings.dart' as SettingsPage;
+import 'settings/reportProblem.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,7 +49,9 @@ class _MyApp extends State<MyApp> {
             '/': (context) => OnBoarding(),
             '/home': (context) => Home(),
             '/startScreen': (context) => StartScreen(),
-            '/settings': (context) => SettingsPage.Settings()
+            '/settings': (context) => SettingsPage.Settings(),
+            '/reportProblem': (context) => ReportProblem()
+
           },
         ));
   }
