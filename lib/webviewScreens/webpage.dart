@@ -1,0 +1,53 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import '../blackBox.dart';
+import '../home.dart';
+import 'disableAds.dart';
+
+class WebPage extends StatefulWidget {
+  WebPage({this.url});
+
+  final url;
+
+  @override
+  _WebPage createState() => url != null ? _WebPage(url: url) : _WebPage();
+}
+
+class _WebPage extends State<WebPage> {
+  _WebPage({this.url});
+
+  String url;
+
+  @override
+  Widget build(BuildContext context) {
+    var blackBoxProvider = Provider.of<BlackBox>(context);
+
+    return WebView(
+      initialUrl: url == null ? 'https://www.w3schools.com' : url,
+      javascriptMode: JavascriptMode.unrestricted,
+      onWebViewCreated: (WebViewController controller) {
+        blackBoxProvider.setController = controller;
+      },
+      navigationDelegate: (NavigationRequest req) {
+        if (req.url != 'https://www.w3schools.com/') {
+          Navigator.pushNamed(context, '/home', arguments: req.url);
+          return NavigationDecision.prevent;
+        }
+        return NavigationDecision.navigate;
+      },
+      onPageStarted: (pageURL) {
+        blackBoxProvider.setCurrentURL = url;
+        print('#### Page Started Loading ###');
+      },
+      onPageFinished: (pageURL) {
+        print('#### Page Finished Loading ###');
+        if (blackBoxProvider.getSettings[2].value == '0') {
+          disableAds(blackBoxProvider.getController);
+        }
+      },
+      onWebResourceError: (webError) {},
+    );
+  }
+}

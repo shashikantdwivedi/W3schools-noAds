@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
-void navigation(index, context) {
+void navigation(index, context, blackBoxProvider) {
   if (index == 3) {
     Navigator.pushNamed(context, '/settings');
+  } else if (index == 0) {
+    if (blackBoxProvider.getCurrentURL != '') {
+      Navigator.pushNamed(context, '/home', arguments: blackBoxProvider.getCurrentURL);
+    } else {
+      Navigator.pushNamed(context, '/home');
+    }
   }
 }
 
@@ -28,7 +34,7 @@ Widget bottomBar(blackBoxProvider, context) {
         ],
         onTap: (index) {
           blackBoxProvider.setBottomBarIndex = index;
-          navigation(index, context);
+          navigation(index, context, blackBoxProvider);
         },
       ));
 }

@@ -1,13 +1,17 @@
 import 'package:flutter/foundation.dart';
 import 'models/settingsModel.dart';
 import 'models/bookmarksModel.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+
 
 class BlackBox extends ChangeNotifier {
   List<Settings> _settings;
   List<Bookmarks> _bookmarks;
+  WebViewController _controller;
   bool firstTime = false;
   bool firstTimeChecked = false;
   int _bottomBarIndex = 0;
+  String _currentURL = '';
 
   set setFirstTime(bool val) {
     firstTimeChecked = true;
@@ -39,6 +43,24 @@ class BlackBox extends ChangeNotifier {
 
   set setBottomBarIndex(index) {
     _bottomBarIndex = index;
+    notifyListeners();
+  }
+
+  get getController {
+    return _controller;
+  }
+
+  set setController(controller) {
+    _controller = controller;
+    notifyListeners();
+  }
+
+  get getCurrentURL{
+    return _currentURL;
+  }
+
+  set setCurrentURL(url) {
+    _currentURL = url;
     notifyListeners();
   }
 }

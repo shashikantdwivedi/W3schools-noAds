@@ -37,6 +37,7 @@ dependencies:
   url_launcher: ^5.5.0
   device_preview: ^0.4.7
   share: ^0.6.4+3
+  webview_flutter: ^0.3.22+1
 
 dev_dependencies:
   flutter_test:
