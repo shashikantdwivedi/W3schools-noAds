@@ -53,6 +53,12 @@ class _WebPage extends State<WebPage> {
           blackBoxProvider.setCurrentTitle = value;
           print(value);
         });
+        if (blackBoxProvider.getSettings[2].value == '0') {
+          disableAds(blackBoxProvider.getController);
+        }
+        if (blackBoxProvider.getDarkMode) {
+          darkTheme(blackBoxProvider);
+        }
         print('#### Page Started Loading ###');
       },
       onPageFinished: (pageURL) {

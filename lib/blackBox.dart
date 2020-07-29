@@ -17,7 +17,6 @@ class BlackBox extends ChangeNotifier {
   bool _pageLoaded = false;
   bool _darkMode = false;
   bool _ads = false;
-  bool _bookmarkExists = false;
 
   set setFirstTime(bool val) {
     firstTimeChecked = true;

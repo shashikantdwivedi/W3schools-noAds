@@ -10,6 +10,8 @@ void navigation(index, context, blackBoxProvider) {
     blackBoxProvider.getController.loadUrl(blackBoxProvider.getCurrentURL);
   } else if (index == 1) {
     toggleSearch(blackBoxProvider);
+  } else if (index == 3) {
+    Navigator.pushNamed(context, '/bookmarks');
   }
 }
 
