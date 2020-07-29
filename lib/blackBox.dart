@@ -14,6 +14,8 @@ class BlackBox extends ChangeNotifier {
   String _currentURL = '';
   String _currentTitle = '';
   bool _pageLoaded = false;
+  bool _darkMode = false;
+  bool _ads = false;
 
   set setFirstTime(bool val) {
     firstTimeChecked = true;
@@ -81,6 +83,24 @@ class BlackBox extends ChangeNotifier {
 
   set setCurrentTitle(title) {
     _currentTitle = title;
+    notifyListeners();
+  }
+
+  get getDarkMode{
+    return _darkMode;
+  }
+
+  set setDarkMode(val) {
+    _darkMode = val;
+    notifyListeners();
+  }
+
+  get getAds{
+    return _ads;
+  }
+
+  set setAds(val) {
+    _ads = val;
     notifyListeners();
   }
 }

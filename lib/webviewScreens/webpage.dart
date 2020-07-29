@@ -6,6 +6,9 @@ import '../blackBox.dart';
 import '../home.dart';
 import 'disableAds.dart';
 import 'darkTheme.dart';
+import 'launchUrl.dart';
+
+
 
 class WebPage extends StatefulWidget {
   WebPage({this.url});
@@ -33,9 +36,14 @@ class _WebPage extends State<WebPage> {
       },
       navigationDelegate: (NavigationRequest req) {
         if (req.url != 'https://www.w3schools.com/') {
-          blackBoxProvider.setPageLoaded = false;
-          Navigator.pushNamed(context, '/home', arguments: req.url);
-          return NavigationDecision.prevent;
+          if (req.url.split('/')[2] != 'www.w3schools.com') {
+            launchURL(req.url);
+            return NavigationDecision.prevent;
+          } else {
+            blackBoxProvider.setPageLoaded = false;
+            Navigator.pushNamed(context, '/home', arguments: req.url);
+            return NavigationDecision.prevent;
+          }
         }
         return NavigationDecision.navigate;
       },
@@ -54,7 +62,7 @@ class _WebPage extends State<WebPage> {
         if (blackBoxProvider.getSettings[2].value == '0') {
           disableAds(blackBoxProvider.getController);
         }
-        if (blackBoxProvider.getSettings[1].value == '1') {
+        if (blackBoxProvider.getDarkMode) {
           darkTheme(blackBoxProvider);
         }
       },

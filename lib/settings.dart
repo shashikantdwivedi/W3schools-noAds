@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:w3school/db.dart';
 import 'components/bottomBar.dart';
 import 'components/appBar.dart';
 import 'blackBox.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'models/settingsModel.dart' as settingModel;
 
 class Settings extends StatefulWidget {
   Settings({Key key}) : super(key: key);
@@ -56,11 +58,15 @@ class _SettingsState extends State<Settings> {
                         style: TextStyle(fontFamily: 'Gilroy Light')),
                     trailing: Checkbox(
                         activeColor: Theme.of(context).primaryColor,
-                        value: darkModeStateEnabled,
+                        value: blackBoxProvider.getDarkMode,
                         onChanged: (val) {
-                          setState(() {
-                            darkModeStateEnabled = val;
-                          });
+                          if (val) {
+                            blackBoxProvider.getSettings[1].value = '1';
+                          } else {
+                            blackBoxProvider.getSettings[1].value = '0';
+                          }
+                          DB.update(settingModel.Settings.table, blackBoxProvider.getSettings[1]);
+                          blackBoxProvider.setDarkMode = val;
                         }),
                   ),
                 ),
@@ -74,11 +80,15 @@ class _SettingsState extends State<Settings> {
                         style: TextStyle(fontFamily: 'Gilroy Light')),
                     trailing: Checkbox(
                         activeColor: Theme.of(context).primaryColor,
-                        value: enableAdStateEnabled,
+                        value: blackBoxProvider.getAds,
                         onChanged: (val) {
-                          setState(() {
-                            enableAdStateEnabled = val;
-                          });
+                          if (val) {
+                            blackBoxProvider.getSettings[2].value = '1';
+                          } else {
+                            blackBoxProvider.getSettings[2].value = '0';
+                          }
+                          DB.update(settingModel.Settings.table, blackBoxProvider.getSettings[2]);
+                          blackBoxProvider.setAds = val;
                         }),
                   ),
                 ),
