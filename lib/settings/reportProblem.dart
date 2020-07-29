@@ -69,7 +69,10 @@ class _ReportProblem extends State<ReportProblem> {
             backgroundColor:
                 blackBoxProvider.getDarkMode ? Colors.black : Colors.white,
             key: _scaffoldKey,
-            appBar: AppBar(),
+            appBar: AppBar(
+              title: Text('Report Problem'),
+            ),
+
             body: Container(
               margin: EdgeInsets.only(top: 20),
               child: Form(
@@ -86,8 +89,27 @@ class _ReportProblem extends State<ReportProblem> {
                           });
                         },
                         keyboardType: TextInputType.emailAddress,
+                        style: TextStyle(
+                          color: blackBoxProvider.getDarkMode
+                              ? Colors.white
+                              : Colors.black
+                        ),
                         decoration: InputDecoration(
-                            labelText: 'Email', border: OutlineInputBorder()),
+                            labelText: 'Email',
+                            labelStyle: TextStyle(
+                                color: blackBoxProvider.getDarkMode
+                                    ? Colors.white60
+                                    : Colors.black54),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: blackBoxProvider.getDarkMode
+                                        ? Colors.white
+                                        : Colors.black)),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: blackBoxProvider.getDarkMode
+                                        ? Colors.white
+                                        : Colors.black))),
                       ),
                     ),
                     Container(
@@ -100,8 +122,27 @@ class _ReportProblem extends State<ReportProblem> {
                           });
                         },
                         keyboardType: TextInputType.name,
+                        style: TextStyle(
+                            color: blackBoxProvider.getDarkMode
+                                ? Colors.white
+                                : Colors.black
+                        ),
                         decoration: InputDecoration(
-                            labelText: 'Name', border: OutlineInputBorder()),
+                            labelText: 'Name',
+                            labelStyle: TextStyle(
+                                color: blackBoxProvider.getDarkMode
+                                    ? Colors.white60
+                                    : Colors.black54),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: blackBoxProvider.getDarkMode
+                                        ? Colors.white
+                                        : Colors.black)),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: blackBoxProvider.getDarkMode
+                                        ? Colors.white
+                                        : Colors.black))),
                       ),
                     ),
                     Container(
@@ -114,9 +155,27 @@ class _ReportProblem extends State<ReportProblem> {
                           });
                         },
                         keyboardType: TextInputType.text,
+                        style: TextStyle(
+                            color: blackBoxProvider.getDarkMode
+                                ? Colors.white
+                                : Colors.black
+                        ),
                         decoration: InputDecoration(
                             labelText: 'Problem Title',
-                            border: OutlineInputBorder()),
+                            labelStyle: TextStyle(
+                                color: blackBoxProvider.getDarkMode
+                                    ? Colors.white60
+                                    : Colors.black54),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: blackBoxProvider.getDarkMode
+                                        ? Colors.white
+                                        : Colors.black)),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: blackBoxProvider.getDarkMode
+                                        ? Colors.white
+                                        : Colors.black))),
                       ),
                     ),
                     Container(
@@ -131,10 +190,28 @@ class _ReportProblem extends State<ReportProblem> {
                         maxLines: 8,
                         maxLength: 500,
                         keyboardType: TextInputType.text,
+                        style: TextStyle(
+                            color: blackBoxProvider.getDarkMode
+                                ? Colors.white
+                                : Colors.black
+                        ),
                         decoration: InputDecoration(
                             labelText: 'Problem Description',
+                            labelStyle: TextStyle(
+                                color: blackBoxProvider.getDarkMode
+                                    ? Colors.white60
+                                    : Colors.black54),
                             alignLabelWithHint: true,
-                            border: OutlineInputBorder()),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: blackBoxProvider.getDarkMode
+                                        ? Colors.white
+                                        : Colors.black)),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: blackBoxProvider.getDarkMode
+                                        ? Colors.white
+                                        : Colors.black))),
                       ),
                     ),
                     Container(
