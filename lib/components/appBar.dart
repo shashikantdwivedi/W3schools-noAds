@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:w3school/blackBox.dart';
 
 PreferredSizeWidget appBar(String title, bool searchEnabled, context) {
+  var blackBoxProvider = Provider.of<BlackBox>(context);
   return PreferredSize(
       child: Container(
           height: 60,
-          decoration: BoxDecoration(color: Theme.of(context).primaryColor, boxShadow: [
+          decoration: BoxDecoration(color:  blackBoxProvider.getDarkMode ? Colors.black : Color(0xFF4CAF50), boxShadow: [
             BoxShadow(
               color: Colors.black54,
               blurRadius: 6

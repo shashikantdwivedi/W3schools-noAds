@@ -21,8 +21,8 @@ Widget bottomBar(blackBoxProvider, context) {
       child: BottomNavigationBar(
         currentIndex: blackBoxProvider.getBottomBarIndex,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Theme.of(context).primaryColor,
-        selectedItemColor: Colors.black54,
+        backgroundColor: blackBoxProvider.getDarkMode ? Colors.black : Color(0xFF4CAF50),
+        selectedItemColor: blackBoxProvider.getDarkMode ? Color(0xFF4CAF50) : Colors.black,
         unselectedItemColor: Colors.white,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),

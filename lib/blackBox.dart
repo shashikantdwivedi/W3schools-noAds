@@ -91,7 +91,15 @@ class BlackBox extends ChangeNotifier {
   }
 
   set setDarkMode(val) {
-    _darkMode = val;
+    if (val is String) {
+      if (int.parse(val) == 0) {
+        _darkMode = false;
+      } else {
+        _darkMode = true;
+      }
+    } else {
+      _darkMode = val;
+    }
     notifyListeners();
   }
 
@@ -103,4 +111,5 @@ class BlackBox extends ChangeNotifier {
     _ads = val;
     notifyListeners();
   }
+
 }

@@ -14,7 +14,6 @@ import 'settings/reportProblem.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'routing.dart';
 
-
 Future<dynamic> myBackgroundMessageHandler(Map<String, dynamic> message) {
   if (message.containsKey('data')) {
     // Handle data message
@@ -93,8 +92,33 @@ class _MyApp extends State<MyApp> {
           builder: DevicePreview.appBuilder,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            primaryColor: Color(0xFF4CAF50),
+              primaryColor: Color(0xFF4CAF50),
+              accentColor: Colors.black,
+              splashColor: Colors.white,
+              fontFamily: 'Gilroy Medium',
+              textTheme: TextTheme(
+                  headline4: TextStyle(
+                      fontFamily: 'Gilroy SemiBold',
+                      color: Colors.black,
+                      fontSize: 16),
+                  headline6: TextStyle(
+                      fontFamily: 'Gilroy Light',
+                      color: Colors.black45,
+                      fontSize: 14))),
+          darkTheme: ThemeData(
+            primaryColor: Colors.black,
+            splashColor: Colors.black,
+            accentColor: Color(0xFF4CAF50),
             fontFamily: 'Gilroy Medium',
+            textTheme: TextTheme(
+                headline4: TextStyle(
+                    fontFamily: 'Gilroy SemiBold',
+                    color: Colors.white,
+                    fontSize: 16),
+                headline6: TextStyle(
+                    fontFamily: 'Gilroy Light',
+                    color: Colors.white70,
+                    fontSize: 14)),
           ),
           initialRoute: '/',
           onGenerateRoute: generateRoute,

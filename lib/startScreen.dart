@@ -39,6 +39,7 @@ class _StartScreenState extends State<StartScreen> {
     });
     print(allSettings);
     blackBoxProvider.setSettings = allSettings;
+    blackBoxProvider.setDarkMode = allSettings[1].value;
   }
 
   void loadBookmarks(blackBoxProvider) async {

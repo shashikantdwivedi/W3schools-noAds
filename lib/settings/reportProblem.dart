@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:w3school/blackBox.dart';
 
 class ReportProblem extends StatefulWidget {
   @override
@@ -61,8 +63,11 @@ class _ReportProblem extends State<ReportProblem> {
 
   @override
   Widget build(BuildContext context) {
+    var blackBoxProvider = Provider.of<BlackBox>(context);
     return SafeArea(
         child: Scaffold(
+            backgroundColor:
+                blackBoxProvider.getDarkMode ? Colors.black : Colors.white,
             key: _scaffoldKey,
             appBar: AppBar(),
             body: Container(
