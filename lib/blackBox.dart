@@ -12,6 +12,8 @@ class BlackBox extends ChangeNotifier {
   bool firstTimeChecked = false;
   int _bottomBarIndex = 0;
   String _currentURL = '';
+  String _currentTitle = '';
+  bool _pageLoaded = false;
 
   set setFirstTime(bool val) {
     firstTimeChecked = true;
@@ -61,6 +63,24 @@ class BlackBox extends ChangeNotifier {
 
   set setCurrentURL(url) {
     _currentURL = url;
+    notifyListeners();
+  }
+
+  get getPageLoaded {
+    return _pageLoaded;
+  }
+
+  set setPageLoaded(val) {
+    _pageLoaded = val;
+    notifyListeners();
+  }
+
+  get getCurrentTitle{
+    return _currentTitle;
+  }
+
+  set setCurrentTitle(title) {
+    _currentTitle = title;
     notifyListeners();
   }
 }

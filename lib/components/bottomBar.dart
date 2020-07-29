@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import '../webviewScreens/search.dart';
 
 void navigation(index, context, blackBoxProvider) {
-  if (index == 3) {
+  if (index == 4) {
     Navigator.pushNamed(context, '/settings');
   } else if (index == 0) {
-    if (blackBoxProvider.getCurrentURL != '') {
-      Navigator.pushNamed(context, '/home', arguments: blackBoxProvider.getCurrentURL);
-    } else {
-      Navigator.pushNamed(context, '/home');
-    }
+    Navigator.pushNamed(context, '/home');
+  } else if (index == 2) {
+    blackBoxProvider.getController.loadUrl(blackBoxProvider.getCurrentURL);
+  } else if (index == 1) {
+    toggleSearch(blackBoxProvider);
   }
 }
 
@@ -27,6 +28,8 @@ Widget bottomBar(blackBoxProvider, context) {
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
           BottomNavigationBarItem(
               icon: Icon(Icons.search), title: Text('Search')),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.refresh), title: Text('Refresh')),
           BottomNavigationBarItem(
               icon: Icon(Icons.bookmark), title: Text('Bookmarks')),
           BottomNavigationBarItem(

@@ -5,6 +5,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import '../blackBox.dart';
 import '../home.dart';
 import 'disableAds.dart';
+import 'darkTheme.dart';
 
 class WebPage extends StatefulWidget {
   WebPage({this.url});
@@ -32,6 +33,7 @@ class _WebPage extends State<WebPage> {
       },
       navigationDelegate: (NavigationRequest req) {
         if (req.url != 'https://www.w3schools.com/') {
+          blackBoxProvider.setPageLoaded = false;
           Navigator.pushNamed(context, '/home', arguments: req.url);
           return NavigationDecision.prevent;
         }
@@ -39,12 +41,21 @@ class _WebPage extends State<WebPage> {
       },
       onPageStarted: (pageURL) {
         blackBoxProvider.setCurrentURL = url;
+        blackBoxProvider.getController.getTitle().then((value) {
+          blackBoxProvider.setCurrentTitle = value;
+          print(value);
+        });
         print('#### Page Started Loading ###');
       },
       onPageFinished: (pageURL) {
+        blackBoxProvider.setPageLoaded = true;
+        print(blackBoxProvider.getPageLoaded);
         print('#### Page Finished Loading ###');
         if (blackBoxProvider.getSettings[2].value == '0') {
           disableAds(blackBoxProvider.getController);
+        }
+        if (blackBoxProvider.getSettings[1].value == '1') {
+          darkTheme(blackBoxProvider);
         }
       },
       onWebResourceError: (webError) {},
