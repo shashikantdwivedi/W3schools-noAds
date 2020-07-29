@@ -93,33 +93,7 @@ class _MyApp extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
               primaryColor: Color(0xFF4CAF50),
-              accentColor: Colors.black,
-              splashColor: Colors.white,
-              fontFamily: 'Gilroy Medium',
-              textTheme: TextTheme(
-                  headline4: TextStyle(
-                      fontFamily: 'Gilroy SemiBold',
-                      color: Colors.black,
-                      fontSize: 16),
-                  headline6: TextStyle(
-                      fontFamily: 'Gilroy Light',
-                      color: Colors.black45,
-                      fontSize: 14))),
-          darkTheme: ThemeData(
-            primaryColor: Colors.black,
-            splashColor: Colors.black,
-            accentColor: Color(0xFF4CAF50),
-            fontFamily: 'Gilroy Medium',
-            textTheme: TextTheme(
-                headline4: TextStyle(
-                    fontFamily: 'Gilroy SemiBold',
-                    color: Colors.white,
-                    fontSize: 16),
-                headline6: TextStyle(
-                    fontFamily: 'Gilroy Light',
-                    color: Colors.white70,
-                    fontSize: 14)),
-          ),
+              fontFamily: 'Gilroy Medium'),
           initialRoute: '/',
           onGenerateRoute: generateRoute,
         ));

@@ -48,7 +48,7 @@ class _WebPage extends State<WebPage> {
         return NavigationDecision.navigate;
       },
       onPageStarted: (pageURL) {
-        blackBoxProvider.setCurrentURL = url;
+        blackBoxProvider.setCurrentURL = pageURL;
         blackBoxProvider.getController.getTitle().then((value) {
           blackBoxProvider.setCurrentTitle = value;
           print(value);

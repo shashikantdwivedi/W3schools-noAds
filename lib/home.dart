@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:w3school/webviewScreens/webpage.dart';
 import 'blackBox.dart';
 import 'components/bottomBar.dart';
+import 'components/floatingOptions.dart';
 
 
 class Home extends StatefulWidget {
@@ -23,6 +24,7 @@ class _HomeState extends State<Home> {
     return SafeArea(
       child: Scaffold(
           bottomNavigationBar: bottomBar(blackBoxProvider, context),
+          floatingActionButton: blackBoxProvider.getPageLoaded ? floatingOptions(blackBoxProvider) : Container(),
           body: url != null ? WebPage(url: url) : WebPage()),
     );
   }

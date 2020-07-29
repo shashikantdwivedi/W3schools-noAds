@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'models/settingsModel.dart';
 import 'models/bookmarksModel.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'db.dart';
 
 
 class BlackBox extends ChangeNotifier {
@@ -16,6 +17,7 @@ class BlackBox extends ChangeNotifier {
   bool _pageLoaded = false;
   bool _darkMode = false;
   bool _ads = false;
+  bool _bookmarkExists = false;
 
   set setFirstTime(bool val) {
     firstTimeChecked = true;
@@ -38,6 +40,24 @@ class BlackBox extends ChangeNotifier {
 
   set setBookmarks(List<Bookmarks> b) {
     _bookmarks = b;
+    notifyListeners();
+  }
+
+  set addBookmark(Bookmarks newBookmark) {
+    _bookmarks.add(newBookmark);
+    DB.insert(Bookmarks.table, newBookmark);
+    notifyListeners();
+  }
+
+  set removeBookmark(url) {
+    Bookmarks bm;
+    _bookmarks.forEach((Bookmarks b) {
+      if (b.url == url) {
+        bm = b;
+      }
+    });
+    DB.delete(Bookmarks.table, bm);
+    _bookmarks.remove(bm);
     notifyListeners();
   }
 
