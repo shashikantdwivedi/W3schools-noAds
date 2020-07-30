@@ -25,7 +25,7 @@ Widget floatingOptions(blackBoxProvider) {
     // child: Icon(Icons.add),
     // If true user is forced to close dial manually
     // by tapping main button and overlay is not rendered.
-    closeManually: true,
+    closeManually: false,
     curve: Curves.bounceIn,
     overlayColor: Colors.black,
     overlayOpacity: 0.5,

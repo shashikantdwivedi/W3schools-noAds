@@ -9,7 +9,7 @@ class BlackBox extends ChangeNotifier {
   List<Settings> _settings;
   List<Bookmarks> _bookmarks;
   WebViewController _controller;
-  bool firstTime = false;
+  bool firstTime = true;
   bool firstTimeChecked = false;
   int _bottomBarIndex = 0;
   String _currentURL = '';

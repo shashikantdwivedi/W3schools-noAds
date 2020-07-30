@@ -1,8 +1,9 @@
 import 'dart:async';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:w3school/blackBox.dart';
+import 'dart:convert';
 
 class ReportProblem extends StatefulWidget {
   @override
@@ -72,7 +73,6 @@ class _ReportProblem extends State<ReportProblem> {
             appBar: AppBar(
               title: Text('Report Problem'),
             ),
-
             body: Container(
               margin: EdgeInsets.only(top: 20),
               child: Form(
@@ -90,10 +90,9 @@ class _ReportProblem extends State<ReportProblem> {
                         },
                         keyboardType: TextInputType.emailAddress,
                         style: TextStyle(
-                          color: blackBoxProvider.getDarkMode
-                              ? Colors.white
-                              : Colors.black
-                        ),
+                            color: blackBoxProvider.getDarkMode
+                                ? Colors.white
+                                : Colors.black),
                         decoration: InputDecoration(
                             labelText: 'Email',
                             labelStyle: TextStyle(
@@ -125,8 +124,7 @@ class _ReportProblem extends State<ReportProblem> {
                         style: TextStyle(
                             color: blackBoxProvider.getDarkMode
                                 ? Colors.white
-                                : Colors.black
-                        ),
+                                : Colors.black),
                         decoration: InputDecoration(
                             labelText: 'Name',
                             labelStyle: TextStyle(
@@ -158,8 +156,7 @@ class _ReportProblem extends State<ReportProblem> {
                         style: TextStyle(
                             color: blackBoxProvider.getDarkMode
                                 ? Colors.white
-                                : Colors.black
-                        ),
+                                : Colors.black),
                         decoration: InputDecoration(
                             labelText: 'Problem Title',
                             labelStyle: TextStyle(
@@ -193,8 +190,7 @@ class _ReportProblem extends State<ReportProblem> {
                         style: TextStyle(
                             color: blackBoxProvider.getDarkMode
                                 ? Colors.white
-                                : Colors.black
-                        ),
+                                : Colors.black),
                         decoration: InputDecoration(
                             labelText: 'Problem Description',
                             labelStyle: TextStyle(
@@ -218,9 +214,24 @@ class _ReportProblem extends State<ReportProblem> {
                         padding: EdgeInsets.all(20),
                         height: 90,
                         child: RaisedButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            var reportProblem =
+                                'https://xu7ib2ywo2.execute-api.ap-south-1.amazonaws.com/prod/w3schoolsreportproblem';
+                            var sendUserEmail =
+                                'https://xu7ib2ywo2.execute-api.ap-south-1.amazonaws.com/prod/w3schoolssenduseremail';
+                            var response = await http.post(reportProblem,
+                                body: json.encode({
+                                  "to": email,
+                                  "title": title,
+                                  "description": description
+                                }));
+                            var response1 = await http.post(sendUserEmail,
+                                body: json.encode({"to": email, "name": name}));
+                            print(response.body);
+                            print(response1.body);
                             _scaffoldKey.currentState
                                 .showSnackBar(submitForm());
+
                             var duration = const Duration(seconds: 2);
                             return new Timer(duration, () {
                               Navigator.pop(context);

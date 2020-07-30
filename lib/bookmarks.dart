@@ -69,7 +69,7 @@ class _BookmarksState extends State<Bookmarks> {
                   Padding(
                     child: Text(bookmarkModel.url, style: TextStyle(
                         color: blackBoxProvider.getDarkMode ? Colors.white60 : Colors.black54,
-                        fontFamily: 'Gilroy Bold'
+                        fontFamily: 'Gilroy SemiBold'
                     ),),
                     padding: EdgeInsets.all(5.0),
                   )

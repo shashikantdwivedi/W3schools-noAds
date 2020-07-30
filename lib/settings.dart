@@ -7,6 +7,7 @@ import 'blackBox.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'models/settingsModel.dart' as settingModel;
+import 'package:package_info/package_info.dart';
 
 class Settings extends StatefulWidget {
   Settings({Key key}) : super(key: key);
@@ -16,10 +17,23 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  PackageInfo packageInfo;
   var darkModeStateEnabled = false;
   var enableAdStateEnabled = false;
-  var appID =
-      'https://play.google.com/store/apps/details?id=com.shashikantdwivedi.w3school';
+  var appID;
+
+  void getPackageName() async {
+    packageInfo = await PackageInfo.fromPlatform();
+    setState(() {
+      appID =
+          'https://play.google.com/store/apps/details?id=${packageInfo.packageName}';
+    });
+  }
+
+  @override
+  void initState() {
+    getPackageName();
+  }
 
   void about() {
     return showAboutDialog(

@@ -5,6 +5,7 @@ import 'startScreen.dart';
 import 'settings.dart';
 import 'settings/reportProblem.dart';
 import 'bookmarks.dart';
+import 'noInternet.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -18,5 +19,6 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case '/settings': return MaterialPageRoute(builder: (context) => Settings());
     case '/reportProblem': return MaterialPageRoute(builder: (context) => ReportProblem());
     case '/bookmarks': return MaterialPageRoute(builder: (context) => Bookmarks());
+    case '/noInternet': return MaterialPageRoute(builder: (context) => NoInternet());
   }
 }

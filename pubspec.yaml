@@ -39,6 +39,9 @@ dependencies:
   share: ^0.6.4+3
   webview_flutter: ^0.3.22+1
   flutter_speed_dial: ^1.2.5
+  data_connection_checker: ^0.3.4
+  http: ^0.12.2
+  package_info: ^0.4.1
 
 
 

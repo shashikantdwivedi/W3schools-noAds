@@ -26,6 +26,7 @@ class _OnBoarding extends State<OnBoarding> {
         print('First Time Used');
         s.value = '0';
         int updt = await DB.update(Settings.table, s);
+        blackBox.setFirstTime = true;
       } else {
         print('Not First Use');
         blackBox.setFirstTime = false;
