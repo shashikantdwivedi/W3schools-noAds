@@ -2,19 +2,28 @@ import 'package:flutter/material.dart';
 import '../webviewScreens/search.dart';
 
 void navigation(index, context, blackBoxProvider) {
-  blackBoxProvider.setBottomBarPreviousIndex = blackBoxProvider.getBottomBarIndex;
-  if (index == 4 && blackBoxProvider.getBottomBarPreviousIndex != 4 ) {
+  blackBoxProvider.setBottomBarPreviousIndex =
+      blackBoxProvider.getBottomBarIndex;
+  if (index == 4 && blackBoxProvider.getBottomBarPreviousIndex != 4) {
     blackBoxProvider.setBottomBarIndex = index;
     Navigator.pushNamed(context, '/settings');
   } else if (index == 0 && blackBoxProvider.getBottomBarPreviousIndex != 0) {
     blackBoxProvider.setBottomBarIndex = index;
     Navigator.pushNamed(context, '/home');
-  } else if (index == 2) {
+  } else if (index == 2 &&
+      blackBoxProvider.getBottomBarPreviousIndex != 4 &&
+      blackBoxProvider.getBottomBarPreviousIndex != 3) {
     blackBoxProvider.setBottomBarIndex = index;
     blackBoxProvider.getController.loadUrl(blackBoxProvider.getCurrentURL);
-  } else if (index == 1) {
-    blackBoxProvider.setBottomBarIndex = index;
+  } else if (index == 1 &&
+      blackBoxProvider.getBottomBarPreviousIndex != 4 &&
+      blackBoxProvider.getBottomBarPreviousIndex != 3) {
     toggleSearch(blackBoxProvider);
+    if (blackBoxProvider.getBottomBarPreviousIndex == 1) {
+      blackBoxProvider.setBottomBarIndex = 0;
+    } else {
+      blackBoxProvider.setBottomBarIndex = index;
+    }
   } else if (index == 3 && blackBoxProvider.getBottomBarPreviousIndex != 3) {
     blackBoxProvider.setBottomBarIndex = index;
     Navigator.pushNamed(context, '/bookmarks');
@@ -29,8 +38,10 @@ Widget bottomBar(blackBoxProvider, context) {
       child: BottomNavigationBar(
         currentIndex: blackBoxProvider.getBottomBarIndex,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: blackBoxProvider.getDarkMode ? Colors.black : Color(0xFF4CAF50),
-        selectedItemColor: blackBoxProvider.getDarkMode ? Color(0xFF4CAF50) : Colors.black,
+        backgroundColor:
+            blackBoxProvider.getDarkMode ? Colors.black : Color(0xFF4CAF50),
+        selectedItemColor:
+            blackBoxProvider.getDarkMode ? Color(0xFF4CAF50) : Colors.black,
         unselectedItemColor: Colors.white,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),

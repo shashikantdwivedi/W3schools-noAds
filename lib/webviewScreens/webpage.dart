@@ -28,7 +28,6 @@ class _WebPage extends State<WebPage> {
     return result;
   }
 
-
   @override
   Widget build(BuildContext context) {
     var blackBoxProvider = Provider.of<BlackBox>(context);
@@ -39,13 +38,20 @@ class _WebPage extends State<WebPage> {
       onWebViewCreated: (WebViewController controller) {
         blackBoxProvider.setController = controller;
       },
-      navigationDelegate: (NavigationRequest req) async{
+      navigationDelegate: (NavigationRequest req) async {
         blackBoxProvider.setPageLoaded = false;
+        print(req.url);
         if (req.url.split('/')[2] != 'www.w3schools.com') {
-          launchURL(req.url);
-          return NavigationDecision.prevent;
+          if (req.url.split('/')[2] == 'www.google.com') {
+            blackBoxProvider.setBottomBarPreviousIndex = 0;
+            blackBoxProvider.setBottomBarIndex = 0;
+            return NavigationDecision.navigate;
+          } else {
+            launchURL(req.url);
+            return NavigationDecision.prevent;
+          }
         }
-        if (! await checkInternetConnection()) {
+        if (!await checkInternetConnection()) {
           Navigator.pushNamed(context, '/noInternet');
         }
 //        if (req.url != 'https://www.w3schools.com/') {
