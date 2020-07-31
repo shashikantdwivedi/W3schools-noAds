@@ -61,6 +61,7 @@ class _WebPage extends State<WebPage> {
         return NavigationDecision.navigate;
       },
       onPageStarted: (pageURL) {
+        blackBoxProvider.setPageLoaded = false;
         blackBoxProvider.setCurrentURL = pageURL;
         if (blackBoxProvider.getSettings[2].value == '0') {
           disableAds(blackBoxProvider.getController);
@@ -72,6 +73,8 @@ class _WebPage extends State<WebPage> {
       },
       onPageFinished: (pageURL) {
         blackBoxProvider.setPageLoaded = true;
+        blackBoxProvider.setBottomBarIndex = 0;
+        blackBoxProvider.setBottomBarPreviousIndex = 0;
         print(blackBoxProvider.getPageLoaded);
         print('#### Page Finished Loading ###');
         blackBoxProvider.getController.getTitle().then((value) {

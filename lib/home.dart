@@ -39,16 +39,35 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     var blackBoxProvider = Provider.of<BlackBox>(context);
     return WillPopScope(
-        child: internetStatus
-            ? SafeArea(
-                child: Scaffold(
-                    bottomNavigationBar: bottomBar(blackBoxProvider, context),
-                    floatingActionButton: blackBoxProvider.getPageLoaded
-                        ? floatingOptions(blackBoxProvider)
-                        : Container(),
-                    body: url != null ? WebPage(url: url) : WebPage()),
-              )
-            : NoInternet(),
-        onWillPop: () async => false,);
+      child: internetStatus
+          ? SafeArea(
+              child: Scaffold(
+                  bottomNavigationBar: bottomBar(blackBoxProvider, context),
+                  floatingActionButton: blackBoxProvider.getPageLoaded
+                      ? floatingOptions(blackBoxProvider)
+                      : Container(),
+                  body: Stack(
+                    children: [
+                      url != null ? WebPage(url: url) : WebPage(),
+                      !blackBoxProvider.getPageLoaded ? Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height,
+                        decoration:
+                            BoxDecoration(color: Colors.black.withOpacity(0.4)),
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 5,
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Color(0xFF4CAF50)),
+                            backgroundColor: Colors.white,
+                          ),
+                        ),
+                      ) : Container()
+                    ],
+                  )),
+            )
+          : NoInternet(),
+      onWillPop: () async => false,
+    );
   }
 }
