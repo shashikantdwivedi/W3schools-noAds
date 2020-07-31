@@ -19,7 +19,7 @@ void main() async {
   await DB.init();
   runApp(
     DevicePreview(
-      enabled: !kReleaseMode,
+      enabled: kReleaseMode,
       builder: (context) => MyApp(),
     ),
   );

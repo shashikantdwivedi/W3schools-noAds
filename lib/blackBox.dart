@@ -12,6 +12,7 @@ class BlackBox extends ChangeNotifier {
   bool firstTime = true;
   bool firstTimeChecked = false;
   int _bottomBarIndex = 0;
+  int _bottomBarPreviousIndex = 0;
   String _currentURL = '';
   String _currentTitle = '';
   bool _pageLoaded = false;
@@ -66,6 +67,15 @@ class BlackBox extends ChangeNotifier {
 
   set setBottomBarIndex(index) {
     _bottomBarIndex = index;
+    notifyListeners();
+  }
+
+  get getBottomBarPreviousIndex {
+    return _bottomBarPreviousIndex;
+  }
+
+  set setBottomBarPreviousIndex(index) {
+    _bottomBarPreviousIndex = index;
     notifyListeners();
   }
 

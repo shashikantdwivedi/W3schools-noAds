@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import '../webviewScreens/search.dart';
 
 void navigation(index, context, blackBoxProvider) {
-  if (index == 4) {
+  blackBoxProvider.setBottomBarPreviousIndex = blackBoxProvider.getBottomBarIndex;
+  if (index == 4 && blackBoxProvider.getBottomBarPreviousIndex != 4 ) {
+    blackBoxProvider.setBottomBarIndex = index;
     Navigator.pushNamed(context, '/settings');
-  } else if (index == 0) {
+  } else if (index == 0 && blackBoxProvider.getBottomBarPreviousIndex != 0) {
+    blackBoxProvider.setBottomBarIndex = index;
     Navigator.pushNamed(context, '/home');
   } else if (index == 2) {
+    blackBoxProvider.setBottomBarIndex = index;
     blackBoxProvider.getController.loadUrl(blackBoxProvider.getCurrentURL);
   } else if (index == 1) {
+    blackBoxProvider.setBottomBarIndex = index;
     toggleSearch(blackBoxProvider);
-  } else if (index == 3) {
+  } else if (index == 3 && blackBoxProvider.getBottomBarPreviousIndex != 3) {
+    blackBoxProvider.setBottomBarIndex = index;
     Navigator.pushNamed(context, '/bookmarks');
   }
 }
@@ -38,7 +44,6 @@ Widget bottomBar(blackBoxProvider, context) {
               icon: Icon(Icons.settings), title: Text('Settings'))
         ],
         onTap: (index) {
-          blackBoxProvider.setBottomBarIndex = index;
           navigation(index, context, blackBoxProvider);
         },
       ));

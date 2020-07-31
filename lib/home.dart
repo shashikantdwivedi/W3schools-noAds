@@ -38,15 +38,17 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     var blackBoxProvider = Provider.of<BlackBox>(context);
-    return internetStatus
-        ? SafeArea(
-            child: Scaffold(
-                bottomNavigationBar: bottomBar(blackBoxProvider, context),
-                floatingActionButton: blackBoxProvider.getPageLoaded
-                    ? floatingOptions(blackBoxProvider)
-                    : Container(),
-                body: url != null ? WebPage(url: url) : WebPage()),
-          )
-        : NoInternet();
+    return WillPopScope(
+        child: internetStatus
+            ? SafeArea(
+                child: Scaffold(
+                    bottomNavigationBar: bottomBar(blackBoxProvider, context),
+                    floatingActionButton: blackBoxProvider.getPageLoaded
+                        ? floatingOptions(blackBoxProvider)
+                        : Container(),
+                    body: url != null ? WebPage(url: url) : WebPage()),
+              )
+            : NoInternet(),
+        onWillPop: () async => false,);
   }
 }

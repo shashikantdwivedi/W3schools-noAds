@@ -50,16 +50,24 @@ class _BookmarksState extends State<Bookmarks> {
           },
           child: Ink(
             child: ListTile(
-              leading: Text((index + 1).toString(), style: TextStyle(
-                color: blackBoxProvider.getDarkMode ? Colors.white : Colors.black
-              ),),
+              leading: Text(
+                (index + 1).toString(),
+                style: TextStyle(
+                    color: blackBoxProvider.getDarkMode
+                        ? Colors.white
+                        : Colors.black),
+              ),
               title: Wrap(
                 children: <Widget>[
                   Padding(
-                    child: Text(bookmarkModel.title, style: TextStyle(
-                      color: blackBoxProvider.getDarkMode ? Colors.white : Colors.black,
-                      fontFamily: 'Gilroy Bold'
-                    ),),
+                    child: Text(
+                      bookmarkModel.title,
+                      style: TextStyle(
+                          color: blackBoxProvider.getDarkMode
+                              ? Colors.white
+                              : Colors.black,
+                          fontFamily: 'Gilroy Bold'),
+                    ),
                     padding: EdgeInsets.all(5.0),
                   )
                 ],
@@ -67,10 +75,14 @@ class _BookmarksState extends State<Bookmarks> {
               subtitle: Wrap(
                 children: <Widget>[
                   Padding(
-                    child: Text(bookmarkModel.url, style: TextStyle(
-                        color: blackBoxProvider.getDarkMode ? Colors.white60 : Colors.black54,
-                        fontFamily: 'Gilroy SemiBold'
-                    ),),
+                    child: Text(
+                      bookmarkModel.url,
+                      style: TextStyle(
+                          color: blackBoxProvider.getDarkMode
+                              ? Colors.white60
+                              : Colors.black54,
+                          fontFamily: 'Gilroy SemiBold'),
+                    ),
                     padding: EdgeInsets.all(5.0),
                   )
                 ],
@@ -83,22 +95,29 @@ class _BookmarksState extends State<Bookmarks> {
   @override
   Widget build(BuildContext context) {
     var blackBoxProvider = Provider.of<BlackBox>(context);
-    return SafeArea(
-        child: Scaffold(
-          backgroundColor: blackBoxProvider.getDarkMode ? Colors.black : Colors.white,
-          appBar: appBar('Bookmarks', false, context),
-          bottomNavigationBar: bottomBar(blackBoxProvider, context),
-      body: ListView.separated(
-          separatorBuilder: (BuildContext context, int index) {
-            return Container(
-              height: 1,
-              color: blackBoxProvider.getDarkMode ? Colors.white60 : Colors.grey[200],
-            );
-          },
-          itemCount: blackBoxProvider.getBookmarks.length,
-          itemBuilder: (BuildContext context, int index) {
-            return bookmark(blackBoxProvider.getBookmarks[index], index, blackBoxProvider);
-          }),
-    ));
+    return WillPopScope(
+      child: SafeArea(
+          child: Scaffold(
+        backgroundColor:
+            blackBoxProvider.getDarkMode ? Colors.black : Colors.white,
+        appBar: appBar('Bookmarks', false, context),
+        bottomNavigationBar: bottomBar(blackBoxProvider, context),
+        body: ListView.separated(
+            separatorBuilder: (BuildContext context, int index) {
+              return Container(
+                height: 1,
+                color: blackBoxProvider.getDarkMode
+                    ? Colors.white60
+                    : Colors.grey[200],
+              );
+            },
+            itemCount: blackBoxProvider.getBookmarks.length,
+            itemBuilder: (BuildContext context, int index) {
+              return bookmark(blackBoxProvider.getBookmarks[index], index,
+                  blackBoxProvider);
+            }),
+      )),
+      onWillPop: () async => false,
+    );
   }
 }
